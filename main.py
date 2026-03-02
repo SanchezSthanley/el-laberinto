@@ -11,6 +11,7 @@ ALTO_VENTANA = 400
 
 fps=pygame.time.Clock()
 
+#redimencionar la ventana del programa
 ventana = pygame.display.set_mode((ANCHO_VENTANA, ALTO_VENTANA), pygame.RESIZABLE)
 def menu():
     pygame.display.set_caption("Escapa del Laberinto")
@@ -38,14 +39,18 @@ def menu():
 
 def jugar():
     run = True
+    jugador = Personaje()
     while run:
         fps.tick(30)
         ventana.fill((255, 0, 0))
+        jugador.dibujar(ventana)
         pygame.display.flip()
+      
         for event in pygame.event.get():
+            jugador.mover(pygame.key.get_pressed()) 
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
                 return
-
+            
 menu()
